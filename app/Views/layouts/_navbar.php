@@ -10,6 +10,14 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">Beranda</a>
             </li>
+            <?php if (session('isLoggedIn') == true): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/transactions">Transaksi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categories">Kategori</a>
+                </li>
+            <?php endif; ?>
             <li class="nav-item">
                 <?php if (session('isLoggedIn') == true): ?>
                     <a class="nav-link" href="/logout">Keluar</a>
