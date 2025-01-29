@@ -11,6 +11,8 @@
           "text-align: -webkit-match-parent"
         ]
       }
-    ]
+    ],
+    "meta-viewport": "off",
+    "axe/language": "off"
   }
 }

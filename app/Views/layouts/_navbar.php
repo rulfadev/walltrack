@@ -12,9 +12,9 @@
             </li>
             <li class="nav-item">
                 <?php if (session('isLoggedIn') == true): ?>
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" href="/logout">Keluar</a>
                 <?php else: ?>
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/login">Masuk</a>
                 <?php endif; ?>
             </li>
         </ul>

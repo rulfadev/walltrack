@@ -7,17 +7,14 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->get('/', 'Landing::index');
+$routes->get('/register', 'Auth::register', ['filter' => 'guest']);
+$routes->post('/register', 'Auth::processRegister', ['filter' => 'guest']);
+$routes->get('/login', 'Auth::login', ['filter' => 'guest']);
+$routes->post('/login', 'Auth::processLogin', ['filter' => 'guest']);
+$routes->get('/logout', 'Auth::logout', ['filter' => 'auth']);
 
-$routes->get('/register', 'Auth::register');
-$routes->post('/register', 'Auth::processRegister');
-$routes->get('/login', 'Auth::login');
-$routes->post('/login', 'Auth::processLogin');
-$routes->get('/logout', 'Auth::logout');
-
-$routes->get('/dashboard', function () {
-    if (!session()->get('isLoggedIn')) {
-        return redirect()->to('/login');
-    }
-
-    return view('pages/dashboard');
+$routes->group('', ['filter' => 'auth'], function ($routes) {
+    $routes->get('/dashboard', 'Dashboard::index');
+    $routes->get('/transactions', 'Transaction::index');
+    $routes->get('/profile', 'User::profile');
 });

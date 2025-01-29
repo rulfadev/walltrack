@@ -5,7 +5,7 @@
         <div class="col-sm-6 offset-sm-3">
 
             <div class="card">
-                <h2 class="card-header">Halaman Login</h2>
+                <h2 class="card-header">Halaman Masuk</h2>
                 <div class="card-body">
 
                     <?= view('layouts\elements\_message_block') ?>
