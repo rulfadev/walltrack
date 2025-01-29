@@ -16,14 +16,17 @@ $routes->get('/logout', 'Auth::logout', ['filter' => 'auth']);
 $routes->group('', ['filter' => 'auth'], function ($routes) {
     // Dashboard
     $routes->get('/dashboard', 'Dashboard::index');
+    $routes->get('/api/data', 'Dashboard::data');
     // Categories
     $routes->get('/categories', 'Category::index');
     $routes->get('/categories/create', 'Category::create');
     $routes->post('/categories/store', 'Category::store');
+    $routes->post('/categories/delete', 'Category::delete');
     // Transaction
     $routes->get('/transactions', 'Transaction::index');
     $routes->get('/transactions/create', 'Transaction::create');
     $routes->post('/transactions/store', 'Transaction::store');
+    $routes->post('/transactions/delete', 'Transaction::delete');
     // Profile
     $routes->get('/profile', 'User::profile');
 });

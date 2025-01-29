@@ -6,6 +6,11 @@ use App\Models\UserModel;
 
 class Auth extends BaseController
 {
+    protected $userModel;
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+    }
     public function register()
     {
         return view('auths/register');
@@ -37,7 +42,7 @@ class Auth extends BaseController
                     'min_length' => 'kata sandi minimal 5 karakter.',
                 ]
             ],
-            'password_confirm' => [
+            'pass_confirm' => [
                 'rules' => 'required|matches[password]',
                 'errors' => [
                     'required' => 'konfirmasi kata sandi harus diisi.',
@@ -50,9 +55,7 @@ class Auth extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $userModel = new UserModel();
-
-        $userModel->save([
+        $this->userModel->save([
             'username' => $this->request->getPost('username'),
             'email' => $this->request->getPost('email'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
@@ -86,10 +89,8 @@ class Auth extends BaseController
         // Validasi Input
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
-        // Load Model
-        $userModel = new UserModel();
         // Cari User Berdasarkan Email
-        $user = $userModel->where('email', $email)->first();
+        $user = $this->userModel->where('email', $email)->first();
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 // Set Session

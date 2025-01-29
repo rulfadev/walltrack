@@ -15,6 +15,13 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="type">Tipe Transaksi</label>
+            <select class="form-control" id="type" name="type" required>
+                <option value="debit">Debit (Pemasukan)</option>
+                <option value="kredit">Kredit (Pengeluaran)</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="amount">Jumlah</label>
             <input type="number" class="form-control" id="amount" name="amount" required>
         </div>

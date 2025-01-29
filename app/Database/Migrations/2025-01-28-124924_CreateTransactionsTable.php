@@ -25,6 +25,11 @@ class CreateTransactionsTable extends Migration
                 'constraint' => 11,
                 'unsigned' => true,
             ],
+            'type' => [
+                'type' => 'ENUM',
+                'constraint' => ['debit', 'kredit'],
+                'default' => 'debit',
+            ],
             'amount' => [
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',

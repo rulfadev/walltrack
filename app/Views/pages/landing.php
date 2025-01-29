@@ -1,7 +1,7 @@
 <?= $this->extend('/layout'); ?>
 <?= $this->section('content'); ?>
-<style>
-    #home {
+<style type="text/css">
+    main {
         height: 70vh;
     }
 </style>

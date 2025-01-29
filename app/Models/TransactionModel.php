@@ -8,6 +8,5 @@ class TransactionModel extends Model
 {
     protected $table = 'transactions';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['user_id', 'category_id', 'amount', 'description', 'transaction_date'];
-    protected $useTimestamps = true;
+    protected $allowedFields = ['user_id', 'category_id', 'type', 'amount', 'transaction_date', 'description'];
 }
