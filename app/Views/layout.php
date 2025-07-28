@@ -7,10 +7,8 @@
 
 <body>
     <?= $this->include('layouts/_navbar'); ?>
-    <main role="main" class="container-fluid">
-        <div class="starter-template">
-            <?= $this->renderSection('content'); ?>
-        </div>
+    <main role="main" style="min-height: 80vh;">
+        <?= $this->renderSection('content'); ?>
     </main>
     <?= $this->include('layouts/_footer'); ?>
 </body>

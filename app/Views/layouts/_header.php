@@ -1,30 +1,28 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title><?= $title ?? 'Walltrack - Smart & Simple Personal Finance Tracker'; ?></title>
+<meta name="description"
+    content="Walltrack is a simple and smart financial tracking app that helps you manage income, expenses, and budgeting efficiently. Keep your finances under control—anytime, anywhere.">
+<meta name="keywords"
+    content="Walltrack, finance tracker, personal finance, expense tracker, income tracker, budgeting app, money management, financial planning, track expenses, manage budget, money tracker">
+<meta name="author" content="Rulfadev">
 
-<title><?= $title ?? 'Walltrack | Catat pengeluaran kamu!'; ?></title>
+<!-- Favicons -->
+<link href="<?= base_url('assets/img/favicon.ico'); ?>" rel="icon">
+<link href="<?= base_url('assets/img/favicon.ico'); ?>" rel="apple-touch-icon">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
-<link rel="icon" href="<?= base_url('assets/img/favicon.ico'); ?>">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('assets/bootstrap-icons/font/bootstrap-icons.min.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('assets/vendor/aos/aos.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('assets/vendor/glightbox/css/glightbox.min.css'); ?>">
 
-<style type="text/css">
-    body {
-        padding-top: 5rem;
-    }
-
-    .starter-template {
-        padding: 5rem 1.5rem;
-    }
-
-    .btn-circle.btn-md {
-        width: 50px;
-        height: 50px;
-        padding: 10px 10px;
-        border-radius: 25px;
-        font-size: 20px;
-        text-align: center;
-    }
-</style>
+<!-- Main CSS File -->
+<link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">

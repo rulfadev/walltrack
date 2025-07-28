@@ -39,17 +39,22 @@ Proyek ini adalah aplikasi web untuk mencatat transaksi menggunakan framework Co
     cp env .env
     ```
 
-5. Migrasi database:
+5. Membuat database:
+    ```bash
+    php spark db:create walltrack
+    ```
+
+6. Migrasi database:
     ```bash
     php spark migrate
     ```
 
-6. Jalankan server pengembangan:
+7. Jalankan server pengembangan:
     ```bash
     php spark serve
     ```
 
-7. Akses aplikasi di browser melalui URL:
+8. Akses aplikasi di browser melalui URL:
     ```
     http://localhost:8080
     ```

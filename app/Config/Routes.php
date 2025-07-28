@@ -7,8 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->get('/', 'Landing::index');
-$routes->get('/register', 'Auth::register', ['filter' => 'guest']);
-$routes->post('/register', 'Auth::processRegister', ['filter' => 'guest']);
+$routes->get('/signup', 'Auth::register', ['filter' => 'guest']);
+$routes->post('/signup', 'Auth::processRegister', ['filter' => 'guest']);
 $routes->get('/login', 'Auth::login', ['filter' => 'guest']);
 $routes->post('/login', 'Auth::processLogin', ['filter' => 'guest']);
 $routes->get('/logout', 'Auth::logout', ['filter' => 'auth']);

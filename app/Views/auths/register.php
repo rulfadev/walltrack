@@ -11,7 +11,7 @@
 
                     <?= view('layouts\elements\_message_block') ?>
 
-                    <form action="<?= url_to('register') ?>" method="post">
+                    <form action="<?= url_to('signup') ?>" method="post">
                         <?= csrf_field() ?>
 
                         <div class="form-group">
