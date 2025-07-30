@@ -41,11 +41,11 @@
                             <?= csrf_field() ?>
                             <div class="row gy-3 overflow-hidden">
                                 <div class="col-12">
-                                    <div class="form-floating mb-3">
+                                    <div class="form-floating">
                                         <input type="email"
                                             class="form-control <?php if (session('errors.email')): ?>is-invalid<?php endif ?>"
                                             name="email" id="email" placeholder="name@example.com"
-                                            value="<?= old('email') ?>" required>
+                                            value="<?= old('email') ?>">
                                         <label for="email" class="form-label">Email</label>
                                         <div class="invalid-feedback">
                                             <?= ucfirst(session('errors.email')) ?>
@@ -53,10 +53,10 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-floating mb-3">
+                                    <div class="form-floating">
                                         <input type="password"
                                             class="form-control <?php if (session('errors.password')): ?>is-invalid<?php endif ?>"
-                                            name="password" id="password" value="" placeholder="Password" required>
+                                            name="password" id="password" value="" placeholder="Password">
                                         <label for="password" class="form-label">Password</label>
                                         <div class="invalid-feedback">
                                             <?= ucfirst(session('errors.password')) ?>
@@ -83,24 +83,4 @@
         </div>
     </div>
 </div>
-<footer id="footer" class="footer mt-5">
-    <div class="container">
-        <div class="copyright text-center ">
-            <p>© <span>Copyright</span> 2025 -<strong class="px-1 sitename"><span
-                        style="color: var(--accent-color);">Wall</span>Track</strong>| <span>All
-                    Rights
-                    Reserved</span></p>
-        </div>
-        <div class="social-links d-flex justify-content-center">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
-        <div class="credits">
-            Developed by <a href="http://rulfadev.my.id">RulfaDev</a>
-        </div>
-    </div>
-
-</footer>
 <?= $this->endSection() ?>

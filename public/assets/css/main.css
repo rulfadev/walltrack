@@ -431,7 +431,8 @@ li .btn-login {
   font-family: var(--heading-font) !important;
   font-weight: 500 !important;
   letter-spacing: 1px !important;
-  padding: 12px 36px !important;
+  padding: 12px 18px !important;
+  margin: 0 10px !important;
   border-radius: 50px;
   transition: 0.5s;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);

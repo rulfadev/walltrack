@@ -7,7 +7,7 @@
 
 <body>
     <?= $this->include('layouts/_navbar'); ?>
-    <main role="main" style="min-height: 80vh;">
+    <main role="main" style="min-height: 80vh;" class="section light-background">
         <?= $this->renderSection('content'); ?>
     </main>
     <?= $this->include('layouts/_footer'); ?>

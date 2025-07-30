@@ -22,31 +22,31 @@ class Auth extends BaseController
             'username' => [
                 'rules' => 'required|min_length[3]|is_unique[users.username]',
                 'errors' => [
-                    'required' => '{field} harus diisi.',
-                    'min_length' => '{field} minimal 3 karakter.',
-                    'is_unique' => '{field} sudah ada.',
+                    'required' => '{field} is required.',
+                    'min_length' => '{field} must be at least 3 characters.',
+                    'is_unique' => '{field} already exists.',
                 ]
             ],
             'email' => [
                 'rules' => 'required|valid_email|is_unique[users.email]',
                 'errors' => [
-                    'required' => '{field} harus diisi.',
-                    'valid_email' => '{field} tidak valid.',
-                    'is_unique' => '{field} sudah ada.',
+                    'required' => '{field} is required.',
+                    'valid_email' => '{field} is not valid.',
+                    'is_unique' => '{field} already exists.',
                 ]
             ],
             'password' => [
                 'rules' => 'required|min_length[5]',
                 'errors' => [
-                    'required' => 'kata sandi harus diisi.',
-                    'min_length' => 'kata sandi minimal 5 karakter.',
+                    'required' => 'Password is required.',
+                    'min_length' => 'Password must be at least 5 characters.',
                 ]
             ],
             'pass_confirm' => [
                 'rules' => 'required|matches[password]',
                 'errors' => [
-                    'required' => 'konfirmasi kata sandi harus diisi.',
-                    'matches' => 'kata sandi yang diulang tidak sama.',
+                    'required' => 'Password confirmation is required.',
+                    'matches' => 'Passwords do not match.',
                 ]
             ],
         ];
@@ -61,7 +61,7 @@ class Auth extends BaseController
             'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
         ]);
 
-        return redirect()->to('/login')->with('success', 'Registrasi berhasil!');
+        return redirect()->to('/login')->with('success', 'Registration successful!');
     }
 
     public function login()
@@ -76,8 +76,8 @@ class Auth extends BaseController
             'email' => [
                 'rules' => 'required|valid_email',
                 'errors' => [
-                    'required' => '{field} harus diisi.',
-                    'valid_email' => '{field} tidak valid.',
+                    'required' => '{field} is required.',
+                    'valid_email' => '{field} is not valid.',
                 ]
             ],
         ];
@@ -101,9 +101,9 @@ class Auth extends BaseController
 
                 return redirect()->to('/dashboard');
             }
-            return redirect()->back()->with('error', 'Password salah.');
+            return redirect()->back()->with('error', 'Wrong Password.');
         }
-        return redirect()->back()->with('error', 'Email tersebut tidak terdaftar.');
+        return redirect()->back()->with('error', 'Email is not registered.');
     }
 
     public function logout()
