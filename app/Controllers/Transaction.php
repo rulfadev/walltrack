@@ -50,6 +50,10 @@ class Transaction extends Controller
             "categories" => $categories
         ];
 
+        if (empty($categories)) {
+            return redirect()->to('/categories/create')->withInput()->with('error', 'No categories found. Please create a category first.');
+        }
+
         return view('transactions/create', $data);
     }
 
