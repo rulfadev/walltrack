@@ -93,10 +93,15 @@ class Auth extends BaseController
         $user = $this->userModel->where('email', $email)->first();
         if ($user) {
             if (password_verify($password, $user['password'])) {
-                // Set Session
+                session()->regenerate(true);
+
                 session()->set([
                     'isLoggedIn' => true,
-                    'user' => $user,
+                    'user' => [
+                        'id'       => $user['id'],
+                        'username' => $user['username'],
+                        'email'    => $user['email'],
+                    ],
                 ]);
 
                 return redirect()->to('/dashboard');

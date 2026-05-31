@@ -2,15 +2,15 @@
 <?= $this->section('content'); ?>
 
 <?php
-$oldType = old('type', 'expense');
+$oldType = old('type', $transaction['type']);
 ?>
 
 <div class="container py-4">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-            <h2 class="fw-bold mb-1">Tambah Transaksi</h2>
+            <h2 class="fw-bold mb-1">Edit Transaksi</h2>
             <p class="text-muted mb-0">
-                Catat pemasukan, pengeluaran, atau transfer antar wallet.
+                Perbarui transaksi. Saldo wallet akan otomatis disesuaikan.
             </p>
         </div>
 
@@ -37,7 +37,7 @@ $oldType = old('type', 'expense');
 
     <div class="card border-0 shadow-sm">
         <div class="card-body">
-            <form action="<?= base_url('/transactions/store'); ?>" method="post">
+            <form action="<?= base_url('/transactions/update/' . $transaction['id']); ?>" method="post">
                 <?= csrf_field(); ?>
 
                 <div class="mb-3">
@@ -57,12 +57,12 @@ $oldType = old('type', 'expense');
 
                 <div class="mb-3">
                     <label class="form-label">Wallet Asal</label>
-                    <select name="wallet_id" class="form-select" required>
+                    <select name="wallet_id" id="walletId" class="form-select" required>
                         <option value="">Pilih Wallet</option>
                         <?php foreach ($wallets as $wallet) : ?>
                             <option
                                 value="<?= esc($wallet['id']); ?>"
-                                <?= old('wallet_id') == $wallet['id'] ? 'selected' : ''; ?>
+                                <?= old('wallet_id', $transaction['wallet_id']) == $wallet['id'] ? 'selected' : ''; ?>
                             >
                                 <?= esc($wallet['name']); ?>
                                 — Rp<?= number_format((float) $wallet['current_balance'], 0, ',', '.'); ?>
@@ -78,7 +78,7 @@ $oldType = old('type', 'expense');
                         <?php foreach ($wallets as $wallet) : ?>
                             <option
                                 value="<?= esc($wallet['id']); ?>"
-                                <?= old('transfer_to_wallet_id') == $wallet['id'] ? 'selected' : ''; ?>
+                                <?= old('transfer_to_wallet_id', $transaction['transfer_to_wallet_id']) == $wallet['id'] ? 'selected' : ''; ?>
                             >
                                 <?= esc($wallet['name']); ?>
                             </option>
@@ -94,7 +94,7 @@ $oldType = old('type', 'expense');
                             <option
                                 value="<?= esc($category['id']); ?>"
                                 data-type="<?= esc($category['type']); ?>"
-                                <?= old('category_id') == $category['id'] ? 'selected' : ''; ?>
+                                <?= old('category_id', $transaction['category_id']) == $category['id'] ? 'selected' : ''; ?>
                             >
                                 <?= esc($category['name']); ?>
                                 — <?= $category['type'] === 'income' ? 'Pemasukan' : 'Pengeluaran'; ?>
@@ -115,7 +115,7 @@ $oldType = old('type', 'expense');
                         class="form-control"
                         min="1"
                         step="0.01"
-                        value="<?= esc(old('amount')); ?>"
+                        value="<?= esc(old('amount', $transaction['amount'])); ?>"
                         required
                     >
                 </div>
@@ -126,18 +126,18 @@ $oldType = old('type', 'expense');
                         type="date"
                         name="transaction_date"
                         class="form-control"
-                        value="<?= esc(old('transaction_date', date('Y-m-d'))); ?>"
+                        value="<?= esc(old('transaction_date', $transaction['transaction_date'])); ?>"
                         required
                     >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Catatan</label>
-                    <textarea name="description" class="form-control" rows="3"><?= esc(old('description')); ?></textarea>
+                    <textarea name="description" class="form-control" rows="3"><?= esc(old('description', $transaction['description'])); ?></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">
-                    Simpan Transaksi
+                    Simpan Perubahan
                 </button>
             </form>
         </div>
@@ -166,7 +166,6 @@ $oldType = old('type', 'expense');
     }
 
     function filterCategoryOptions(type) {
-        let selectedOption = categoryId.options[categoryId.selectedIndex];
         let selectedIsValid = true;
         let visibleCount = 0;
 

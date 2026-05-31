@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CategoryModel extends Model
+class BudgetModel extends Model
 {
-    protected $table = 'categories';
+    protected $table = 'budgets';
     protected $primaryKey = 'id';
     protected $returnType = 'array';
     protected $useTimestamps = true;
@@ -14,10 +14,10 @@ class CategoryModel extends Model
 
     protected $allowedFields = [
         'user_id',
-        'name',
-        'type',
-        'icon',
-        'color',
+        'category_id',
+        'month',
+        'year',
+        'amount',
         'deleted_at',
     ];
 }

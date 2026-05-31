@@ -4,9 +4,9 @@
 <div class="container py-4">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-            <h2 class="fw-bold mb-1">Tambah Kategori</h2>
+            <h2 class="fw-bold mb-1">Edit Kategori</h2>
             <p class="text-muted mb-0">
-                Buat kategori untuk pemasukan atau pengeluaran.
+                Perbarui nama, tipe, ikon, dan warna kategori.
             </p>
         </div>
 
@@ -19,7 +19,9 @@
         <div class="alert alert-danger">
             <ul class="mb-0">
                 <?php foreach (session()->getFlashdata('errors') as $error): ?>
-                    <li><?= esc($error); ?></li>
+                    <li>
+                        <?= esc($error); ?>
+                    </li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -35,50 +37,44 @@
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <form action="<?= base_url('/categories/store'); ?>" method="post">
+                    <form action="<?= base_url('/categories/update/' . $category['id']); ?>" method="post">
                         <?= csrf_field(); ?>
 
                         <div class="mb-3">
                             <label class="form-label">Nama Kategori</label>
                             <input type="text" name="name" id="categoryName" class="form-control"
-                                value="<?= esc(old('name')); ?>" placeholder="Contoh: Gaji, Makan, Transport" required>
+                                value="<?= esc(old('name', $category['name'])); ?>" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Tipe Kategori</label>
                             <select name="type" id="categoryType" class="form-select" required>
-                                <option value="expense" <?= old('type', 'expense') === 'expense' ? 'selected' : ''; ?>>
+                                <option value="expense" <?= old('type', $category['type']) === 'expense' ? 'selected' : ''; ?>>
                                     Pengeluaran
                                 </option>
-                                <option value="income" <?= old('type') === 'income' ? 'selected' : ''; ?>>
+                                <option value="income" <?= old('type', $category['type']) === 'income' ? 'selected' : ''; ?>>
                                     Pemasukan
                                 </option>
                             </select>
                             <div class="form-text">
-                                Kategori Pemasukan hanya bisa dipakai untuk transaksi Pemasukan. Kategori Pengeluaran
-                                hanya bisa dipakai untuk transaksi Pengeluaran.
+                                Tipe kategori yang sudah dipakai transaksi tidak bisa diubah.
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Icon Bootstrap</label>
                             <input type="text" name="icon" id="categoryIcon" class="form-control"
-                                value="<?= esc(old('icon', 'bi-tag')); ?>"
-                                placeholder="Contoh: bi-cup-hot, bi-cash-stack, bi-cart">
-                            <div class="form-text">
-                                Gunakan class Bootstrap Icons, contoh: <code>bi-cart</code>, <code>bi-cash-stack</code>,
-                                <code>bi-car-front</code>.
-                            </div>
+                                value="<?= esc(old('icon', $category['icon'] ?: 'bi-tag')); ?>">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Warna</label>
                             <input type="color" name="color" id="categoryColor" class="form-control form-control-color"
-                                value="<?= esc(old('color', '#134686')); ?>">
+                                value="<?= esc(old('color', $category['color'] ?: '#134686')); ?>">
                         </div>
 
                         <button type="submit" class="btn btn-primary">
-                            Simpan Kategori
+                            Simpan Perubahan
                         </button>
                     </form>
                 </div>
@@ -93,20 +89,22 @@
                     <div class="d-flex align-items-center gap-3">
                         <span id="previewCircle"
                             class="d-inline-flex align-items-center justify-content-center rounded-circle text-white"
-                            style="width: 52px; height: 52px; background: #134686;">
-                            <i id="previewIcon" class="bi bi-tag fs-4"></i>
+                            style="width: 52px; height: 52px; background: <?= esc($category['color'] ?: '#134686'); ?>;">
+                            <i id="previewIcon" class="bi <?= esc($category['icon'] ?: 'bi-tag'); ?> fs-4"></i>
                         </span>
 
                         <div>
-                            <h6 class="fw-bold mb-1" id="previewName">Nama Kategori</h6>
-                            <span class="badge bg-danger" id="previewType">Pengeluaran</span>
+                            <h6 class="fw-bold mb-1" id="previewName">
+                                <?= esc($category['name']); ?>
+                            </h6>
+                            <span class="badge" id="previewType"></span>
                         </div>
                     </div>
 
                     <hr>
 
                     <p class="text-muted mb-0">
-                        Preview ini membantu memastikan ikon dan warna kategori terlihat jelas.
+                        Warna dan ikon ini akan membantu kategori lebih mudah dikenali di transaksi dan laporan.
                     </p>
                 </div>
             </div>
